@@ -1,0 +1,80 @@
+/*  1. Remove the default margins */
+/* 2. apply random bg colors */
+/* 
+let's explore FlexBox
+
+flex-direction
+flex-wrap
+flex-flow
+justify-content
+align-items
+align-content
+*/
+
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+body {
+  font-family: "Nunito Sans", sans-serif;
+}
+
+
+.wrapper {
+  max-width: 800px;
+  margin: 100px auto;
+}
+
+.title-container {
+  /* background-color: aqua; */
+  height: 100px;
+  text-align: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title-box {
+  /* background-color: chartreuse; */
+  width: 400px;
+}
+
+.nav-container {
+  /* background-color: bisque; */
+  height: 50px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-menu {
+  margin: 0 30px;
+}
+
+.flexbox-container {
+  /* background-color: darkkhaki; */
+  /* height: 1000px; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: center
+}
+
+.box {
+  background-color: #EEE;
+  width: 170px;
+  height: 120px;
+
+  margin: 10px;
+}
