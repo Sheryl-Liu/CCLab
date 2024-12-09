@@ -2,23 +2,31 @@ let img;
 let angle = 0;
 let distance = 120;
 
-let gua1, gua2, gua3, gua4, gua5, gua6, gua7, gua8;
+let guas = [];
 
 function preload() {
   img = loadImage("assets/Taichi.svg");
 }
 
 function setup() {
-  let canvas = createCanvas(800, 500);
+  let canvas = createCanvas(1000, 600);
   canvas.parent("p5-canvas-container");
-  gua1 = new Gua1(width / 2, height / 2);
-  gua2 = new Gua2(width / 2, height / 2);
-  gua3 = new Gua3(width / 2, height / 2);
-  gua4 = new Gua4(width / 2, height / 2);
-  gua5 = new Gua5(width / 2, height / 2);
-  gua6 = new Gua6(width / 2, height / 2);
-  gua7 = new Gua7(width / 2, height / 2);
-  gua8 = new Gua8(width / 2, height / 2);
+
+  let guaColors = [
+    color(220, 100, 0),
+    color(255, 220, 0),
+    color(100, 220, 0),
+    color(10, 220, 220),
+    color(150, 0, 150),
+    color(220, 10, 10),
+    color(140, 70, 20),
+    color(192, 192, 192)
+  ];
+
+  for (let i = 0; i < 8; i++) {
+    let gua = new Gua(i + 1, guaColors[i]);
+    guas.push(gua);
+  }
 }
 
 function draw() {
@@ -31,14 +39,81 @@ function draw() {
     angle += 0.008;
   }
 
-  gua1.display();
-  gua2.display();
-  gua3.display();
-  gua4.display();
-  gua5.display();
-  gua6.display();
-  gua7.display();
-  gua8.display();
+  mouseHover();
+
+  for (let i = 0; i < guas.length; i++) {
+    let gua = guas[i];
+    gua.display();
+  }
+}
+
+function mouseHover() {
+  let mousex = (mouseX - width / 2) * cos(-angle) - (mouseY - height / 2) * sin(-angle) + width / 2;
+  let mousey = (mouseX - width / 2) * sin(-angle) + (mouseY - height / 2) * cos(-angle) + height / 2;
+
+  let gua1x = width / 2;
+  let gua1y = height / 2 - distance;
+  if (dist(mousex, mousey, gua1x, gua1y) < 50) {
+    guas[0].change();
+  } else {
+    guas[0].resetColor();
+  }
+
+  let gua2x = width / 2;
+  let gua2y = height / 2 + distance;
+  if (dist(mousex, mousey, gua2x, gua2y) < 50) {
+    guas[1].change();
+  } else {
+    guas[1].resetColor();
+  }
+
+  let gua3x = width / 2 + distance * cos(3 * PI / 4);
+  let gua3y = height / 2 + distance * sin(3 * PI / 4);
+  if (dist(mousex, mousey, gua3x, gua3y) < 50) {
+    guas[2].change();
+  } else {
+    guas[2].resetColor();
+  }
+
+  let gua4x = width / 2 + distance * cos(- PI / 4);
+  let gua4y = height / 2 + distance * sin(- PI / 4);
+  if (dist(mousex, mousey, gua4x, gua4y) < 50) {
+    guas[3].change();
+  } else {
+    guas[3].resetColor();
+  }
+
+  let gua5x = width / 2 + distance;
+  let gua5y = height / 2;
+  if (dist(mousex, mousey, gua5x, gua5y) < 50) {
+    guas[4].change();
+  } else {
+    guas[4].resetColor();
+  }
+
+  let gua6x = width / 2 - distance;
+  let gua6y = height / 2;
+  if (dist(mousex, mousey, gua6x, gua6y) < 50) {
+    guas[5].change();
+  } else {
+    guas[5].resetColor();
+  }
+
+  let gua7x = width / 2 + distance * cos(PI / 4);
+  let gua7y = height / 2 + distance * sin(PI / 4);
+  if (dist(mousex, mousey, gua7x, gua7y) < 50) {
+    guas[6].change();
+  } else {
+    guas[6].resetColor();
+  }
+
+  let gua8x = width / 2 + distance * cos(-3 * PI / 4);
+  let gua8y = height / 2 + distance * sin(-3 * PI / 4);
+  if (dist(mousex, mousey, gua8x, gua8y) < 50) {
+    guas[7].change();
+  } else {
+    guas[7].resetColor();
+  }
 }
 
 function mousePressed() {
@@ -48,66 +123,109 @@ function mousePressed() {
   let gua1x = width / 2;
   let gua1y = height / 2 - distance;
   if (dist(mousex, mousey, gua1x, gua1y) < 50) {
-    gua1.change();
+    guas[0].movePage();
   }
 
   let gua2x = width / 2;
   let gua2y = height / 2 + distance;
   if (dist(mousex, mousey, gua2x, gua2y) < 50) {
-    gua2.change();
+    guas[1].movePage();
   }
 
-  let gua3x = width / 2 + distance * cos(3* PI / 4);
-  let gua3y = height / 2 + distance * sin(3* PI / 4);
+  let gua3x = width / 2 + distance * cos(3 * PI / 4);
+  let gua3y = height / 2 + distance * sin(3 * PI / 4);
   if (dist(mousex, mousey, gua3x, gua3y) < 50) {
-    gua3.change();
+    guas[2].movePage();
   }
 
   let gua4x = width / 2 + distance * cos(- PI / 4);
   let gua4y = height / 2 + distance * sin(- PI / 4);
   if (dist(mousex, mousey, gua4x, gua4y) < 50) {
-    gua4.change();
+    guas[3].movePage();
   }
 
   let gua5x = width / 2 + distance;
   let gua5y = height / 2;
   if (dist(mousex, mousey, gua5x, gua5y) < 50) {
-    gua5.change();
+    guas[4].movePage();
   }
 
   let gua6x = width / 2 - distance;
   let gua6y = height / 2;
   if (dist(mousex, mousey, gua6x, gua6y) < 50) {
-    gua6.change();
+    guas[5].movePage();
   }
 
   let gua7x = width / 2 + distance * cos(PI / 4);
   let gua7y = height / 2 + distance * sin(PI / 4);
   if (dist(mousex, mousey, gua7x, gua7y) < 50) {
-    gua7.change();
+    guas[6].movePage();
   }
 
-  let gua8x = width / 2 + distance * cos(-3*PI / 4);
-  let gua8y = height / 2 + distance * sin(-3*PI / 4);
+  let gua8x = width / 2 + distance * cos(-3 * PI / 4);
+  let gua8y = height / 2 + distance * sin(-3 * PI / 4);
   if (dist(mousex, mousey, gua8x, gua8y) < 50) {
-    gua8.change();
+    guas[7].movePage();
   }
 }
 
 
-class Gua1 {
-  constructor(angleGua) {
+class Gua {
+  constructor(id, clr) {
+    this.id = id;
+    this.selected = boolean(localStorage.getItem("gua" + id));
     this.angleGua = 0;
     this.distance = 120;
     this.color = color(250, 200);
+    this.hoverColor = clr;
+    this.orginalColor = color(250, 200);
+    if (this.selected == true) {
+      this.orginalColor = clr;
+    }
   }
   change() {
-    this.color = color(255, 100, 0);
-    setTimeout(function(){
-      window.open("page1.html", "_self");
-    }, 800);   
+    this.color = color(255, 100);
+    if (this.selected == true) {
+      let r = red(this.orginalColor);
+      let g = green(this.orginalColor);
+      let b = blue(this.orginalColor);
+      this.color = color(r, g, b, 120);
+    }
+  }
+  resetColor() {
+    this.color = this.orginalColor;
+  }
+  movePage() {
+    localStorage.setItem("gua" + this.id, "true"); // ***
+    window.open("page" + this.id + ".html", "_self");
   }
   display() {
+    if (this.id == 1) {
+      this.display1();
+    }
+    else if (this.id == 2) {
+      this.display2();
+    }
+    else if (this.id == 3) {
+      this.display3();
+    }
+    else if (this.id == 4) {
+      this.display4();
+    }
+    else if (this.id == 5) {
+      this.display5();
+    }
+    else if (this.id == 6) {
+      this.display6();
+    }
+    else if (this.id == 7) {
+      this.display7();
+    }
+    else if (this.id == 8) {
+      this.display8();
+    }
+  }
+  display1() {
     push();
     stroke(this.color);
     strokeWeight(5);
@@ -117,21 +235,7 @@ class Gua1 {
     }
     pop();
   }
-}
-
-class Gua2 {
-  constructor(angleGua) {
-    this.angleGua = 0;
-    this.distance = 120;
-    this.color = color(250, 200);
-  }
-  change() {
-    this.color = color(255, 200, 0);
-    setTimeout(function(){
-      window.open("page2.html", "_self");
-    }, 800);
-  }
-  display() {
+  display2() {
     push();
     stroke(this.color);
     strokeWeight(5);
@@ -142,21 +246,7 @@ class Gua2 {
     }
     pop();
   }
-}
-
-class Gua3 {
-  constructor(angleGua) {
-    this.angleGua = 0;
-    this.distance = 120;
-    this.color = color(250, 200);
-  }
-  change() {
-    this.color = color(205, 200, 0);
-    setTimeout(function(){
-      window.open("page3.html", "_self");
-    }, 800);
-  }
-  display() {
+  display3() {
     push();
     stroke(this.color);
     strokeWeight(5);
@@ -169,21 +259,7 @@ class Gua3 {
     line(20, -20, 20, 20);
     pop();
   }
-}
-
-class Gua4 {
-  constructor(angleGua) {
-    this.angleGua = 0;
-    this.distance = 120;
-    this.color = color(250, 200);
-  }
-  change() {
-    this.color = color(105, 200, 0);
-    setTimeout(function(){
-      window.open("page4.html", "_self");
-    }, 800);
-  }
-  display() {
+  display4() {
     push();
     stroke(this.color);
     strokeWeight(5);
@@ -197,21 +273,7 @@ class Gua4 {
     line(40, -20, 40, 20);
     pop();
   }
-}
-
-class Gua5 {
-  constructor(angleGua) {
-    this.angleGua = 0;
-    this.distance = 120;
-    this.color = color(250, 200);
-  }
-  change() {
-    this.color = color(0, 100, 200);
-    setTimeout(function(){
-      window.open("page5.html", "_self");
-    }, 800);
-  }
-  display() {
+  display5() {
     push();
     stroke(this.color);
     strokeWeight(5);
@@ -223,21 +285,7 @@ class Gua5 {
     line(30, -20, 30, 20);
     pop();
   }
-}
-
-class Gua6 {
-  constructor(angleGua) {
-    this.angleGua = 0;
-    this.distance = 120;
-    this.color = color(250, 200);
-  }
-  change() {
-    this.color = color(0, 200, 100);
-    setTimeout(function(){
-      window.open("page6.html", "_self");
-    }, 800);
-  }
-  display() {
+  display6() {
     push();
     stroke(this.color);
     strokeWeight(5);
@@ -250,21 +298,7 @@ class Gua6 {
     line(-40, -20, -40, 20);
     pop();
   }
-}
-
-class Gua7 {
-  constructor(angleGua) {
-    this.angleGua = 0;
-    this.distance = 120;
-    this.color = color(250, 200);
-  }
-  change() {
-    this.color = color(10, 10, 200);
-    setTimeout(function(){
-      window.open("page7.html", "_self");
-    }, 800);
-  }
-  display() {
+  display7() {
     push();
     stroke(this.color);
     strokeWeight(5);
@@ -277,21 +311,7 @@ class Gua7 {
     line(40, -20, 40, 20);
     pop();
   }
-}
-
-class Gua8 {
-  constructor(angleGua) {
-    this.angleGua = 0;
-    this.distance = 120;
-    this.color = color(250, 200);
-  }
-  change() {
-    this.color = color(100, 0, 220);
-    setTimeout(function(){
-      window.open("page8.html", "_self");
-    }, 800);
-  }
-  display() {
+  display8() {
     push();
     stroke(this.color);
     strokeWeight(5);

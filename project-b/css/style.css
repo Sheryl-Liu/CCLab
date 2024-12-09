@@ -14,7 +14,7 @@ p {
 body {
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
   background-color: black;
-  color:white;
+  color: white;
 }
 
 h1,
@@ -56,13 +56,13 @@ a:hover {
 
 .landing-page-title-box {
   /* background-color: aquamarine; */
-  font-size: 30px;
-  padding: 20px 0;
+  font-size: 20px;
+  padding: 10px 0;
 }
 
 .landing-page-link-box {
   /* background-color: coral; */
-  padding: 20px 0;
+  padding: 10px 0;
 }
 
 .main-container {

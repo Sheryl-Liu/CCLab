@@ -1,4 +1,6 @@
 let r = 300;
+let position;
+let bg;
 
 function setup() {
   let canvas = createCanvas(800, 500);
@@ -6,25 +8,30 @@ function setup() {
 }
 
 function draw() {
-  let position = map(mouseX, 0, width, 0, 1);
-  constrain(position, 0, 1);
-  let bg = lerpColor(color(240, 250, 255), color(10, 10, 30), position-0.25);
-  background(bg);
-
-  if (mouseX >= 0 && mouseX <= width) {
-    push();
-    translate(width / 2, height / 2 + 120);
-    let angleSun = map(position, 0, 1, -PI, PI);
-    let sunX = cos(angleSun) * r;
-    let sunY = sin(angleSun) * r;
-    sun(sunX, sunY);
-
-    let angeleMoon = map(position, 0, 1, 0, 2 * PI);
-    let moonX = cos(angeleMoon) * r;
-    let moonY = sin(angeleMoon) * r;
-    moon(moonX, moonY);
-    pop();
+  if (mouseX > 0 && mouseX < width) {
+    position = map(mouseX, -10, width, -0.1, 1);
+    constrain(position, 0, 1);
+    bg = lerpColor(color(240, 250, 255), color(10, 10, 30), position - 0.25);
+    background(bg);
+  } 
+  else if (mouseX >= width) {
+    position=1
+    background(10,10,10)
   }
+
+  push();
+  translate(width / 2, height / 2 + 120);
+  let angleSun = map(position, 0, 1, -PI, PI);
+  let sunX = cos(angleSun) * r;
+  let sunY = sin(angleSun) * r;
+  sun(sunX, sunY);
+
+  let angeleMoon = map(position, 0, 1, 0, 2 * PI);
+  
+  let moonX = cos(angeleMoon) * r;
+  let moonY = sin(angeleMoon) * r;
+  moon(moonX, moonY);
+  pop();
 
   land();
 }

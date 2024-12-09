@@ -1,11 +1,31 @@
+let img;
+let angle=0
+let speed=0
+
+function preload() {
+  img = loadImage("assets/page2.jpeg");
+}
+
 function setup() {
   let canvas = createCanvas(800, 500);
   canvas.parent("p5-canvas-container");
-  background(220);
 }
 
 function draw() {
-  textSize(32);
-  fill(0);
-  text ('To be exlpored',width/2, height/2)
+  background(255)
+  translate(width / 2, height / 2);
+  rotate(angle)
+  imageMode(CENTER);
+  image(img, 0, 0);
+  
+  angle+=speed
+  
+  if (mouseIsPressed) {
+    speed+=0.01
+  } else {
+    speed *= 0.95
+    if (speed<0.001) {
+      speed=0
+    }
+  }
 }
