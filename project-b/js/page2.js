@@ -1,9 +1,11 @@
 let img;
-let angle=0
-let speed=0
+let angle = 0
+let speed = 0
+let magicSound
 
 function preload() {
   img = loadImage("assets/page2.jpeg");
+  magicSound = loadSound("assets/magic.wav")
 }
 
 function setup() {
@@ -17,15 +19,19 @@ function draw() {
   rotate(angle)
   imageMode(CENTER);
   image(img, 0, 0);
-  
-  angle+=speed
-  
+
+  angle += speed
+
   if (mouseIsPressed) {
-    speed+=0.01
+    speed += 0.01
   } else {
     speed *= 0.95
-    if (speed<0.001) {
-      speed=0
+    if (speed < 0.001) {
+      speed = 0
     }
   }
+}
+
+function mousePressed() {
+  magicSound.play()
 }

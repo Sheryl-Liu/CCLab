@@ -3,12 +3,14 @@ let index = 0, nextIndex = 0;
 let nowOpa = 255
 let nextOpa = 0
 let change = false
+let camera
 
 function preload() {
   images[0] = loadImage("assets/spring.jpeg");
   images[1] = loadImage("assets/summer.jpeg");
   images[2] = loadImage("assets/autumn.jpeg");
   images[3] = loadImage("assets/winter.jpeg");
+  camera = loadSound("assets/camera.wav")
 }
 
 function setup() {
@@ -62,5 +64,6 @@ function mousePressed() {
     nowOpa = 255
     nextOpa = 0
   }
+  camera.play()
 }
 

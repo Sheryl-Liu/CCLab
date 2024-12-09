@@ -11,6 +11,7 @@ function setup() {
   noStroke();
 
   rainSound.loop();
+  rainSound.setVolume(1.5)
   thunderSound.setVolume(0.1)
 }
 

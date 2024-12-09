@@ -3,14 +3,20 @@ let speed = 0;
 let trans = 0;
 let clr;
 let buddhaClr;
+let inhaleSound
+let exhaleSound
 
 function preload() {
   img = loadImage("assets/buddha.webp");
+  inhaleSound = loadSound("assets/inhale.wav")
+  exhaleSound = loadSound("assets/exhale.wav")
 }
 
 function setup() {
   let canvas = createCanvas(800, 500);
   canvas.parent("p5-canvas-container");
+  inhaleSound.setVolume(0.5)
+  exhaleSound.setVolume(0.5)
 }
 
 function draw() {
@@ -29,7 +35,7 @@ function draw() {
     buddhaClr = lerpColor(
       color(100, 180, 180),
       color(200, 100, 10, 200),
-      trans/255
+      trans / 255
     );
   }
   speed = constrain(speed, 0, 150);
@@ -63,4 +69,12 @@ function breathe() {
   translate(width / 2, height / 2 + 12);
   circle(0, 0, 300 + speed);
   pop();
+}
+
+function mousePressed() {
+  inhaleSound.play()
+}
+
+function mouseReleased() {
+  exhaleSound.play()
 }
