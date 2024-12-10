@@ -20,7 +20,7 @@ function setup() {
     color(150, 0, 150),
     color(220, 10, 10),
     color(140, 70, 20),
-    color(192, 192, 192)
+    color(220, 220, 220)
   ];
 
   for (let i = 0; i < 8; i++) {
